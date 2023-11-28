@@ -1,4 +1,13 @@
 <?php
+session_start();
+if (!isset($_SESSION['username']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    
+    header("Location: signin.php");
+    exit();
+}
+?>
+
+<?php
   include "koneksi.php";
   $read= "SELECT * FROM deskripsi_karakter";
   $query=mysqli_query($conn,$read);
