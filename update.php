@@ -1,6 +1,13 @@
 <?php
 include('koneksi.php');
 
+session_start();
+if (!isset($_SESSION['username']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    
+    header("Location: signin.php");
+    exit();
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $karakter = $_POST["karakter"];
